@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 640">
+  <rect width="1400" height="640" fill="#10100e"/>
+  <g fill="none" stroke="#f4f1ea" stroke-width="3">
+    <circle cx="250" cy="320" r="70"/>
+    <circle cx="430" cy="320" r="120"/>
+    <circle cx="680" cy="320" r="190"/>
+    <path d="M900 180 A210 210 0 0 1 1120 250" stroke-width="4" stroke-linecap="square"/>
+    <path d="M960 120 A280 280 0 0 1 1240 210" stroke-width="4" stroke-linecap="square"/>
+    <path d="M1020 150 A180 180 0 0 1 1200 230" stroke-width="4" stroke-linecap="square"/>
+  </g>
+  <circle cx="250" cy="320" r="8" fill="#f4f1ea"/>
+  <g fill="#f4f1ea" font-family="Impact, Haettenschweiler, sans-serif">
+    <text x="70" y="120" font-size="42" letter-spacing="3">LISTEN</text>
+    <text x="360" y="150" font-size="42" letter-spacing="3">REPEAT</text>
+    <text x="600" y="120" font-size="42" letter-spacing="3">DECIDE</text>
+    <text x="980" y="520" font-size="92" letter-spacing="2">EXPAND</text>
+  </g>
+</svg>
