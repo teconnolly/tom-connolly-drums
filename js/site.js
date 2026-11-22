@@ -281,6 +281,7 @@ function validEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+if (bookSection) {
 cal.addEventListener("click", (event) => {
   const button = event.target.closest("[data-date]");
   if (!button) return;
@@ -389,11 +390,15 @@ holdsList.addEventListener("click", (event) => {
   render();
 });
 
+render();
+}
+
 const contactForm = document.getElementById("contact-form");
 const contactError = document.getElementById("contact-error");
 const contactSuccess = document.getElementById("contact-success");
 const contactSuccessCopy = document.getElementById("contact-success-copy");
 
+if (contactForm) {
 contactForm.addEventListener("submit", (event) => {
   event.preventDefault();
   clearFieldErrors(contactForm);
@@ -442,12 +447,15 @@ document.getElementById("contact-reset").addEventListener("click", () => {
   contactForm.hidden = false;
   contactSuccess.hidden = true;
 });
+}
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxCaption = document.getElementById("lightbox-caption");
 
-document.querySelector(".gallery-grid").addEventListener("click", (event) => {
+const gallery = document.querySelector(".gallery-grid");
+if (lightbox && gallery) {
+gallery.addEventListener("click", (event) => {
   const shot = event.target.closest(".shot");
   if (!shot) return;
   lightboxImg.src = shot.dataset.src;
@@ -459,6 +467,7 @@ document.getElementById("lightbox-close").addEventListener("click", () => lightb
 lightbox.addEventListener("click", (event) => {
   if (event.target === lightbox) lightbox.close();
 });
+}
 
 const navToggle = document.querySelector(".nav-toggle");
 const navPanel = document.getElementById("nav-panel");
@@ -482,7 +491,9 @@ if ("IntersectionObserver" in window) {
     const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
     if (!visible) return;
     navLinks.forEach((link) => {
-      const on = link.getAttribute("href") === `#${visible.target.id}`;
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("#")) return;
+      const on = href === `#${visible.target.id}`;
       if (on) link.setAttribute("aria-current", "true");
       else link.removeAttribute("aria-current");
     });
@@ -490,4 +501,16 @@ if ("IntersectionObserver" in window) {
   sections.forEach((section) => watcher.observe(section));
 }
 
-render();
+const paidReturn = new URL("downloads.html", window.location.href).href;
+document.querySelectorAll("form.paypal-buy").forEach((form) => {
+  const add = (name, value) => {
+    if (form.querySelector(`[name="${name}"]`)) return;
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    form.append(input);
+  };
+  add("return", paidReturn);
+  add("cancel_return", paidReturn);
+});
